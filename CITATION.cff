@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "repository-entity-store: get, create and change a 100-byte entity"
+abstract: >
+  Side 5 of the fabric hexagon: an interface that gets, creates and changes
+  entities, over the iceoryx2 ring transport-ingest-python opens. A skeleton --
+  the environment resolves and the generated codec is present, and the repository
+  itself is not written.
+authors:
+  - family-names: Lee
+    given-names: "K. S. Ernest (iFire)"
+    email: ernest.lee@chibifire.com
+    orcid: "https://orcid.org/0000-0003-4570-1436"
+version: 0.1.0
+date-released: "2026-08-18"
+license: MIT
+repository-code: "https://github.com/v-sekai-multiplayer-fabric/repository-entity-store"
+keywords:
+  - repository
+  - entity
+  - iceoryx2
+  - shared-memory
+
+references:
+  - type: software
+    title: "iceoryx2: zero-copy inter-process communication"
+    authors:
+      - name: "ekxide IO GmbH"
+    url: "https://github.com/eclipse-iceoryx/iceoryx2"
+    license: Apache-2.0
+    notes: >
+      The transport. Shared memory, which is why this and the interactor holding
+      it are two processes on one machine, and why both ends pin the same version.

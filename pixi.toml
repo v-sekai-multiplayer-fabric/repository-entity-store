@@ -1,0 +1,24 @@
+[workspace]
+name = "repository-entity-store"
+version = "0.1.0"
+description = "The fabric's repository side: get, create and change a 100-byte entity, over the iceoryx2 ring transport-ingest-python already opens."
+channels = ["conda-forge"]
+# iceoryx2 is shared memory, so a repository and the interactor holding it are two processes on
+# one machine rather than two machines. These are the machines.
+platforms = ["osx-arm64", "linux-64", "win-64"]
+
+[dependencies]
+# The same minor transport-ingest-python pins. Its `Bus` is imported from this environment, so a
+# split here would run that module on an interpreter it was never resolved against.
+python = "3.12.*"
+
+[pypi-dependencies]
+# Both ends of a shared-memory service must be the same iceoryx2: the service registry rejects a
+# second port whose type disagrees, and nothing checks that two versions lay a slice out alike.
+# `conformance.py` asserts this pin equals transport-ingest-python's rather than trusting it.
+iceoryx2 = "==0.9.3"
+
+[tasks]
+check = "python conformance.py"
+selftest = "python conformance.py --self-test"
+serve = "python -m entity_store.service"
